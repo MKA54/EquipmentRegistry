@@ -1,18 +1,27 @@
-package com.example.equipmentregister.dto;
+package com.example.equipmentregister.dto.models;
 
+import com.example.equipmentregister.dto.BaseModelDto;
+import com.example.equipmentregister.models.VacuumModel;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description = "Модель пылесоса")
-public class VacuumCleanerDto extends BaseModelDto {
+public class VacuumModelDto extends BaseModelDto {
     private double dustContainerVolume;
     private int modesCount;
     private Long typeID;
 
-    public VacuumCleanerDto() {
+    public VacuumModelDto() {
     }
 
-    public VacuumCleanerDto(BaseModelDto baseModelDto) {
+    public VacuumModelDto(BaseModelDto baseModelDto) {
         super(baseModelDto);
+    }
+
+    public VacuumModelDto(VacuumModel model) {
+        super(model.getName(), model.getSerialNumber(), model.getColor(), model.getLength(), model.getWidth(),
+                model.getThickness(), model.getPrice(), model.isAvailability());
+        this.dustContainerVolume = model.getDustContainerVolume();
+        this.modesCount = model.getModesCount();
     }
 
     public Long getTypeID() {

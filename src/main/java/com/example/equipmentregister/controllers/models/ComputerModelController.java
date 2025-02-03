@@ -1,6 +1,6 @@
-package com.example.equipmentregister.controllers;
+package com.example.equipmentregister.controllers.models;
 
-import com.example.equipmentregister.dto.TVModelDto;
+import com.example.equipmentregister.dto.models.ComputerModelDto;
 import com.example.equipmentregister.services.IModelService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -11,33 +11,33 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/equipment/rpc/api/v1/tv/model")
-@Tag(name = "Модели телевизоров")
-public class TVModelController {
-    private final IModelService<TVModelDto> modelService;
+@RequestMapping("/equipment/rpc/api/v1/computer/model")
+@Tag(name = "Модели компьютеров")
+public class ComputerModelController {
+    private final IModelService<ComputerModelDto> modelService;
 
-    public TVModelController(IModelService<TVModelDto> modelService) {
+    public ComputerModelController(IModelService<ComputerModelDto> modelService) {
         this.modelService = modelService;
     }
 
     @Operation(summary = "Добавить модель")
     @PostMapping("add")
-    public ResponseEntity<?> add(TVModelDto tvModelDto) {
-        modelService.addModel(tvModelDto);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<?> add(ComputerModelDto model) {
+        modelService.add(model);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @Operation(summary = "Получить все модели")
     @GetMapping("getAll")
     public ResponseEntity<?> getAll() {
-        List<TVModelDto> tvModels = modelService.getAll();
-        return new ResponseEntity<>(tvModels, HttpStatus.OK);
+        List<ComputerModelDto> models = modelService.getAll();
+        return new ResponseEntity<>(models, HttpStatus.OK);
     }
 
     @Operation(summary = "Найти по наименованию, без учета регистра")
     @GetMapping("getByNameCaseInsensitive/{name}")
     public ResponseEntity<?> getByNameCaseInsensitive(@PathVariable("name") String name) {
-        List<TVModelDto> tvModels = modelService.getAllTVModelsByNameCaseInsensitive(name);
-        return new ResponseEntity<>(tvModels, HttpStatus.OK);
+        List<ComputerModelDto> models = modelService.getAllTVModelsByNameCaseInsensitive(name);
+        return new ResponseEntity<>(models, HttpStatus.OK);
     }
 }

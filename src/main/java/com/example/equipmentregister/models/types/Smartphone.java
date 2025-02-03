@@ -6,27 +6,38 @@ import org.hibernate.annotations.Where;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table
 public class Smartphone extends BaseTypeEntity {
     @OneToMany(mappedBy = "smartphone")
     @Where(clause = "availability = true")
-    private Set<SmartphoneModel> models;
+    private List<SmartphoneModel> models;
 
     public Smartphone() {
     }
 
-    public Smartphone(Long id) {
-       super(id);
+    public Smartphone(String name, String manufactureCountry, String manufacturer, boolean possibilityOrderingOnline,
+                      boolean paymentByInstalments) {
+        super(name, manufactureCountry, manufacturer, possibilityOrderingOnline, paymentByInstalments);
     }
 
-    public Set<SmartphoneModel> getModels() {
+    public Smartphone(Long id, String name, String manufactureCountry, String manufacturer, boolean possibilityOrderingOnline,
+                      boolean paymentByInstalments, List<SmartphoneModel> models) {
+        super(id, name, manufactureCountry, manufacturer, possibilityOrderingOnline, paymentByInstalments);
+        this.models = models;
+    }
+
+    public Smartphone(Long id) {
+        super(id);
+    }
+
+    public List<SmartphoneModel> getModels() {
         return models;
     }
 
-    public void setModels(Set<SmartphoneModel> models) {
+    public void setModels(List<SmartphoneModel> models) {
         this.models = models;
     }
 }

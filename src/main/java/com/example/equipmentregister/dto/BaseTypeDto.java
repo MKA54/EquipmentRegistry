@@ -1,4 +1,4 @@
-package com.example.equipmentregister.dto.types;
+package com.example.equipmentregister.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 

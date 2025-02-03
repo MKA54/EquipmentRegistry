@@ -1,6 +1,7 @@
 package com.example.equipmentregister.models;
 
 import com.example.equipmentregister.models.types.Vacuum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -14,6 +15,7 @@ public class VacuumModel extends BaseModelEntity {
 
     @ManyToOne
     @JoinColumn(name = "vacuum_id")
+    @JsonIgnore
     private Vacuum vacuum;
 
     public VacuumModel() {

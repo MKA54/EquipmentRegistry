@@ -1,6 +1,7 @@
 package com.example.equipmentregister.models;
 
 import com.example.equipmentregister.models.types.Computer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -14,6 +15,7 @@ public class ComputerModel extends BaseModelEntity {
 
     @ManyToOne
     @JoinColumn(name = "computer_id")
+    @JsonIgnore
     private Computer computer;
 
     public ComputerModel() {

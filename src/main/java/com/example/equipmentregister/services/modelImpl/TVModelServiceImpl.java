@@ -1,12 +1,11 @@
-package com.example.equipmentregister.services.implModel;
+package com.example.equipmentregister.services.modelImpl;
 
 import com.example.equipmentregister.dao.models.TVModelRepository;
-import com.example.equipmentregister.dto.TVModelDto;
+import com.example.equipmentregister.dto.models.TVModelDto;
 import com.example.equipmentregister.models.TVModel;
 import com.example.equipmentregister.models.types.TV;
 import com.example.equipmentregister.services.IModelService;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,9 +21,6 @@ public class TVModelServiceImpl implements IModelService<TVModelDto> {
     @Override
     public List<TVModelDto> getAll() {
         List<TVModel> models = tvModelRepository.findAll();
-        if (models.isEmpty()) {
-            return null;
-        }
 
         return models
                 .stream()
@@ -42,19 +38,18 @@ public class TVModelServiceImpl implements IModelService<TVModelDto> {
                 .collect(Collectors.toList());
     }
 
-    @Transactional
     @Override
-    public void addModel(TVModelDto tvModelDto) {
-        tvModelRepository.save(new TVModel(tvModelDto.getName(),
-                tvModelDto.getSerialNumber(),
-                tvModelDto.getColor(),
-                tvModelDto.getLength(),
-                tvModelDto.getWidth(),
-                tvModelDto.getThickness(),
-                tvModelDto.getPrice(),
-                tvModelDto.isAvailability(),
-                tvModelDto.getCategory(),
-                tvModelDto.getTechnology(),
-                new TV(tvModelDto.getTypeID())));
+    public void add(TVModelDto model) {
+        tvModelRepository.save(new TVModel(model.getName(),
+                model.getSerialNumber(),
+                model.getColor(),
+                model.getLength(),
+                model.getWidth(),
+                model.getThickness(),
+                model.getPrice(),
+                model.isAvailability(),
+                model.getCategory(),
+                model.getTechnology(),
+                new TV(model.getTypeID())));
     }
 }

@@ -1,5 +1,6 @@
-package com.example.equipmentregister.dto;
+package com.example.equipmentregister.dto.models;
 
+import com.example.equipmentregister.dto.BaseModelDto;
 import com.example.equipmentregister.models.TVModel;
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -24,11 +25,11 @@ public class TVModelDto extends BaseModelDto {
         this.typeID = typeID;
     }
 
-    public TVModelDto(TVModel tvModel) {
-        super(tvModel.getName(), tvModel.getSerialNumber(), tvModel.getColor(), tvModel.getLength(), tvModel.getWidth(),
-                tvModel.getThickness(), tvModel.getPrice(), tvModel.isAvailability());
-        this.category = tvModel.getCategory();
-        this.technology = tvModel.getTechnology();
+    public TVModelDto(TVModel model) {
+        super(model.getName(), model.getSerialNumber(), model.getColor(), model.getLength(), model.getWidth(),
+                model.getThickness(), model.getPrice(), model.isAvailability());
+        this.category = model.getCategory();
+        this.technology = model.getTechnology();
     }
 
     public Long getTypeID() {

@@ -1,6 +1,7 @@
 package com.example.equipmentregister.models;
 
 import com.example.equipmentregister.models.types.Fridge;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -14,6 +15,7 @@ public class FridgeModel extends BaseModelEntity {
 
     @ManyToOne
     @JoinColumn(name = "fridge_id")
+    @JsonIgnore
     private Fridge fridge;
 
     public FridgeModel() {

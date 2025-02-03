@@ -4,10 +4,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-public interface IModelService<T> {
-    List<T> getAll();
-
-    List<T> getAllTVModelsByNameCaseInsensitive(String name);
+public interface ITypeService<T> {
+    List<T> getAllAvailable();
 
     @Transactional
     void add(T model);

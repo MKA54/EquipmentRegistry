@@ -1,5 +1,7 @@
-package com.example.equipmentregister.dto;
+package com.example.equipmentregister.dto.models;
 
+import com.example.equipmentregister.dto.BaseModelDto;
+import com.example.equipmentregister.models.ComputerModel;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description = "Модель компьютера")
@@ -14,6 +16,13 @@ public class ComputerModelDto extends BaseModelDto {
 
     public ComputerModelDto(BaseModelDto baseModelDto) {
         super(baseModelDto);
+    }
+
+    public ComputerModelDto(ComputerModel model) {
+        super(model.getName(), model.getSerialNumber(), model.getColor(), model.getLength(), model.getWidth(),
+                model.getThickness(), model.getPrice(), model.isAvailability());
+        this.category = model.getCategory();
+        this.processorType = model.getProcessorType();
     }
 
     public Long getTypeID() {

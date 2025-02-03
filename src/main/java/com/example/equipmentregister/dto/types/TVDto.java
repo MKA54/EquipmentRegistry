@@ -1,21 +1,40 @@
 package com.example.equipmentregister.dto.types;
 
-import com.example.equipmentregister.dto.TVModelDto;
+import com.example.equipmentregister.dto.BaseTypeDto;
+import com.example.equipmentregister.dto.models.TVModelDto;
+import com.example.equipmentregister.models.TVModel;
+import com.example.equipmentregister.models.types.TV;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Schema(description = "Вид телевизора")
-public class TVDto extends BaseTypeDto{
-    private List<TVModelDto> tvModelDtoList;
+public class TVDto extends BaseTypeDto {
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
+    private List<TVModelDto> modelDtoList;
+
     public TVDto() {
     }
 
-    public List<TVModelDto> getTvModelDtoList() {
-        return tvModelDtoList;
+    public TVDto(TV tv) {
+        super(tv.getId(), tv.getName(), tv.getManufactureCountry(), tv.getManufacturer(),
+                tv.isPossibilityOrderingOnline(), tv.isPaymentByInstalments());
+        modelDtoList = convertModelToDto(tv.getModels());
     }
 
-    public void setTvModelDtoList(List<TVModelDto> tvModelDtoList) {
-        this.tvModelDtoList = tvModelDtoList;
+    public List<TVModelDto> getModelDtoList() {
+        return modelDtoList;
+    }
+
+    public void setModelDtoList(List<TVModelDto> modelDtoList) {
+        this.modelDtoList = modelDtoList;
+    }
+
+    private List<TVModelDto> convertModelToDto(List<TVModel> models) {
+        return models
+                .stream()
+                .map(TVModelDto::new)
+                .collect(Collectors.toList());
     }
 }

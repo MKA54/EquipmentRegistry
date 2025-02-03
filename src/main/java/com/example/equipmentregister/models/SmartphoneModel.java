@@ -1,6 +1,7 @@
 package com.example.equipmentregister.models;
 
 import com.example.equipmentregister.models.types.Smartphone;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -14,6 +15,7 @@ public class SmartphoneModel extends BaseModelEntity {
 
     @ManyToOne
     @JoinColumn(name = "smartphone_id")
+    @JsonIgnore
     private Smartphone smartphone;
 
     public SmartphoneModel() {
