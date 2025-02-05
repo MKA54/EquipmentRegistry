@@ -2,7 +2,7 @@ package com.example.equipmentregister.dto.types;
 
 import com.example.equipmentregister.dto.BaseTypeDto;
 import com.example.equipmentregister.dto.models.FridgeModelDto;
-import com.example.equipmentregister.models.FridgeModel;
+import com.example.equipmentregister.models.models.FridgeModel;
 import com.example.equipmentregister.models.types.Fridge;
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -18,8 +18,8 @@ public class FridgeDto extends BaseTypeDto {
     }
 
     public FridgeDto(Fridge fridge) {
-        super(fridge.getId(), fridge.getName(), fridge.getManufactureCountry(), fridge.getManufacturer(),
-                fridge.isPossibilityOrderingOnline(), fridge.isPaymentByInstalments());
+        super(fridge.getId(), fridge.getManufactureCountry(), fridge.getManufacturer(),
+                fridge.isPossibilityOrderingOnline(), fridge.isPaymentByInstalments(), fridge.getRegistry().getId());
         modelDtoList = convertModelToDto(fridge.getModels());
     }
 

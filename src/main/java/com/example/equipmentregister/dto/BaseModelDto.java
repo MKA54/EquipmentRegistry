@@ -1,49 +1,51 @@
 package com.example.equipmentregister.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import javax.validation.constraints.*;
 
 public class BaseModelDto {
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
+    private Long id;
     @NotNull
     @NotEmpty
     @NotBlank
     @Size(max = 64)
+    @Schema(description = "Наименование", example = "Galaxy")
     private String name;
     @NotNull
     @NotEmpty
     @NotBlank
     @Size(max = 64)
+    @Schema(description = "Серийный номер", example = "S25")
     private String serialNumber;
     @NotNull
     @NotEmpty
     @NotBlank
     @Size(max = 64)
+    @Schema(description = "Цвет", example = "Белый")
     private String color;
     @PositiveOrZero
+    @Schema(description = "Длина", example = "15")
     private double length;
     @PositiveOrZero
+    @Schema(description = "Ширина", example = "54")
     private double width;
     @PositiveOrZero
+    @Schema(description = "Глубина", example = "4")
     private double thickness;
     @PositiveOrZero
+    @Schema(description = "Цена", example = "66.5")
     private double price;
+    @Schema(description = "Наличие товара", example = "true")
     private boolean availability;
 
     public BaseModelDto() {
     }
 
-    public BaseModelDto(BaseModelDto basic) {
-        name = basic.name;
-        serialNumber = basic.serialNumber;
-        color = basic.color;
-        length = basic.length;
-        width = basic.width;
-        thickness = basic.thickness;
-        price = basic.price;
-        availability = basic.availability;
-    }
-
-    public BaseModelDto(String name, String serialNumber, String color, double length, double width,
-                        double thickness, double price, boolean availability) {
+    public BaseModelDto(Long id, String name, String serialNumber,
+                        String color, double length, double width, double thickness, double price, boolean availability) {
+        this.id = id;
         this.name = name;
         this.serialNumber = serialNumber;
         this.color = color;
@@ -116,5 +118,13 @@ public class BaseModelDto {
 
     public void setAvailability(boolean availability) {
         this.availability = availability;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

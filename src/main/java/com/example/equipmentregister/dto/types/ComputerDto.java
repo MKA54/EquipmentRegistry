@@ -2,7 +2,7 @@ package com.example.equipmentregister.dto.types;
 
 import com.example.equipmentregister.dto.BaseTypeDto;
 import com.example.equipmentregister.dto.models.ComputerModelDto;
-import com.example.equipmentregister.models.ComputerModel;
+import com.example.equipmentregister.models.models.ComputerModel;
 import com.example.equipmentregister.models.types.Computer;
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -18,8 +18,8 @@ public class ComputerDto extends BaseTypeDto {
     }
 
     public ComputerDto(Computer computer) {
-        super(computer.getId(), computer.getName(), computer.getManufactureCountry(), computer.getManufacturer(),
-                computer.isPossibilityOrderingOnline(), computer.isPaymentByInstalments());
+        super(computer.getId(), computer.getManufactureCountry(), computer.getManufacturer(),
+                computer.isPossibilityOrderingOnline(), computer.isPaymentByInstalments(), computer.getRegistry().getId());
         modelDtoList = convertModelToDto(computer.getModels());
     }
 

@@ -1,5 +1,6 @@
-package com.example.equipmentregister.models;
+package com.example.equipmentregister.models.models;
 
+import com.example.equipmentregister.models.BaseModelEntity;
 import com.example.equipmentregister.models.types.Smartphone;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -10,7 +11,8 @@ import javax.persistence.*;
 public class SmartphoneModel extends BaseModelEntity {
     @Column
     private int memory;
-    @Column
+
+    @Column(name = "cameras_count")
     private int camerasCount;
 
     @ManyToOne

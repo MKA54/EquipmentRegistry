@@ -4,6 +4,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Transactional(readOnly = true)
 public interface ITypeService<T> {
     List<T> getAllAvailable();
 

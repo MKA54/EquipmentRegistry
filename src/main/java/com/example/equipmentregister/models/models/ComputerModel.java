@@ -1,16 +1,20 @@
-package com.example.equipmentregister.models;
+package com.example.equipmentregister.models.models;
 
+import com.example.equipmentregister.models.BaseModelEntity;
 import com.example.equipmentregister.models.types.Computer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table
 public class ComputerModel extends BaseModelEntity {
     @Column
+    @Size(min = 1, max = 64)
     private String category;
     @Column(name = "processor_type")
+    @Size(min = 1, max = 64)
     private String processorType;
 
     @ManyToOne

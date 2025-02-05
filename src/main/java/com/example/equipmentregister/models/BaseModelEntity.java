@@ -1,6 +1,9 @@
 package com.example.equipmentregister.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @MappedSuperclass
@@ -10,10 +13,17 @@ public class BaseModelEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
+    @Size(min = 1, max = 64)
     private String name;
     @Column(name = "serial_number")
+    @Size(min = 1, max = 64)
+    @NotNull
+    @NotBlank
     private String serialNumber;
     @Column
+    @Size(min = 1, max = 64)
+    @NotNull
+    @NotBlank
     private String color;
     @Column
     private double length;

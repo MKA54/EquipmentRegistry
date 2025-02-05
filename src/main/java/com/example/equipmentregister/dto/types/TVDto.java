@@ -2,7 +2,7 @@ package com.example.equipmentregister.dto.types;
 
 import com.example.equipmentregister.dto.BaseTypeDto;
 import com.example.equipmentregister.dto.models.TVModelDto;
-import com.example.equipmentregister.models.TVModel;
+import com.example.equipmentregister.models.models.TVModel;
 import com.example.equipmentregister.models.types.TV;
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -18,8 +18,8 @@ public class TVDto extends BaseTypeDto {
     }
 
     public TVDto(TV tv) {
-        super(tv.getId(), tv.getName(), tv.getManufactureCountry(), tv.getManufacturer(),
-                tv.isPossibilityOrderingOnline(), tv.isPaymentByInstalments());
+        super(tv.getId(), tv.getManufactureCountry(), tv.getManufacturer(),
+                tv.isPossibilityOrderingOnline(), tv.isPaymentByInstalments(), tv.getRegistry().getId());
         modelDtoList = convertModelToDto(tv.getModels());
     }
 

@@ -1,35 +1,33 @@
 package com.example.equipmentregister.dto.models;
 
 import com.example.equipmentregister.dto.BaseModelDto;
-import com.example.equipmentregister.models.TVModel;
+import com.example.equipmentregister.models.models.TVModel;
 import io.swagger.v3.oas.annotations.media.Schema;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 @Schema(description = "Модель телевизора")
 public class TVModelDto extends BaseModelDto {
+    @Size(min = 1, max = 64)
+    @Schema(description = "Категория", example = "Цифровой")
     private String category;
+    @Size(min = 1, max = 64)
+    @Schema(description = "Технология", example = "LED")
     private String technology;
+    @Schema(description = "Вид телевизора", example = "1")
+    @Min(1)
     private Long typeID;
 
     public TVModelDto() {
     }
 
-    public TVModelDto(BaseModelDto baseModelDto) {
-        super(baseModelDto);
-    }
-
-    public TVModelDto(String name, String serialNumber, String color, double length, double width, double thickness,
-                      double price, boolean availability, String category, String technology, Long typeID) {
-        super(name, serialNumber, color, length, width, thickness, price, availability);
-        this.category = category;
-        this.technology = technology;
-        this.typeID = typeID;
-    }
-
     public TVModelDto(TVModel model) {
-        super(model.getName(), model.getSerialNumber(), model.getColor(), model.getLength(), model.getWidth(),
+        super(model.getId(), model.getName(), model.getSerialNumber(), model.getColor(), model.getLength(), model.getWidth(),
                 model.getThickness(), model.getPrice(), model.isAvailability());
         this.category = model.getCategory();
         this.technology = model.getTechnology();
+        typeID = model.getTv().getId();
     }
 
     public Long getTypeID() {

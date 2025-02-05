@@ -3,12 +3,17 @@ package com.example.equipmentregister.controllers.types;
 import com.example.equipmentregister.dto.types.SmartphoneDto;
 import com.example.equipmentregister.services.ITypeService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
@@ -21,14 +26,14 @@ public class SmartphoneController {
         this.typeService = typeService;
     }
 
-    @Operation(summary = "Добавить вид смартфона")
+    @Operation(summary = "Добавить позицию")
     @PostMapping(value = "add")
     public ResponseEntity<?> add(@RequestBody @Valid SmartphoneDto smartphoneDto) {
         typeService.add(smartphoneDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @Operation(summary = "Получить все доступные смартфоны")
+    @Operation(summary = "Получить все позиции с доступными моделями")
     @GetMapping(value = "getAllAvailable")
     public ResponseEntity<?> getAllAvailable() {
         List<SmartphoneDto> dtoList = typeService.getAllAvailable();

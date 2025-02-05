@@ -2,6 +2,7 @@ package com.example.equipmentregister.services.typeImpl;
 
 import com.example.equipmentregister.dao.types.SmartphoneRepository;
 import com.example.equipmentregister.dto.types.SmartphoneDto;
+import com.example.equipmentregister.models.Registry;
 import com.example.equipmentregister.models.types.Smartphone;
 import com.example.equipmentregister.services.ITypeService;
 import org.springframework.stereotype.Service;
@@ -20,18 +21,23 @@ public class SmartphoneServiceImpl implements ITypeService<SmartphoneDto> {
     @Override
     public List<SmartphoneDto> getAllAvailable() {
         List<Smartphone> repo = smartphoneRepository.findAll();
-        return repo
-                .stream()
-                .map(SmartphoneDto::new)
-                .collect(Collectors.toList());
+        return typeToDto(repo);
     }
 
     @Override
     public void add(SmartphoneDto model) {
-        smartphoneRepository.save(new Smartphone(model.getName(),
+        smartphoneRepository.save(new Smartphone(
                 model.getManufactureCountry(),
                 model.getManufacturer(),
                 model.isPossibilityOrderingOnline(),
-                model.isPaymentByInstalments()));
+                model.isPaymentByInstalments(),
+                new Registry(model.getRegistryID())));
+    }
+
+    private List<SmartphoneDto> typeToDto(List<Smartphone> repo) {
+        return repo
+                .stream()
+                .map(SmartphoneDto::new)
+                .collect(Collectors.toList());
     }
 }

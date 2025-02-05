@@ -1,5 +1,6 @@
-package com.example.equipmentregister.models;
+package com.example.equipmentregister.models.models;
 
+import com.example.equipmentregister.models.BaseModelEntity;
 import com.example.equipmentregister.models.types.Vacuum;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -21,8 +22,8 @@ public class VacuumModel extends BaseModelEntity {
     public VacuumModel() {
     }
 
-    public VacuumModel(String name, String serialNumber, String color, double length, double width,
-                       double thickness, double price, boolean availability, double dustContainerVolume, int modesCount, Vacuum vacuum) {
+    public VacuumModel(String name, String serialNumber, String color, double length, double width, double thickness,
+                       double price, boolean availability, double dustContainerVolume, int modesCount, Vacuum vacuum) {
         super(name, serialNumber, color, length, width, thickness, price, availability);
         this.dustContainerVolume = dustContainerVolume;
         this.modesCount = modesCount;

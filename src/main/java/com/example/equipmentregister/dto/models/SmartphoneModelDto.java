@@ -1,27 +1,30 @@
 package com.example.equipmentregister.dto.models;
 
 import com.example.equipmentregister.dto.BaseModelDto;
-import com.example.equipmentregister.models.SmartphoneModel;
+import com.example.equipmentregister.models.models.SmartphoneModel;
 import io.swagger.v3.oas.annotations.media.Schema;
+
+import javax.validation.constraints.Min;
 
 @Schema(description = "Модель смартфона")
 public class SmartphoneModelDto extends BaseModelDto {
+    @Schema(description = "Память", example = "128")
     private int memory;
+    @Schema(description = "Количество камер", example = "3")
     private int camerasCount;
+    @Schema(description = "Вид смартфона", example = "1")
+    @Min(1)
     private Long typeID;
 
     public SmartphoneModelDto() {
     }
 
-    public SmartphoneModelDto(BaseModelDto baseModelDto) {
-        super(baseModelDto);
-    }
-
     public SmartphoneModelDto(SmartphoneModel model) {
-        super(model.getName(), model.getSerialNumber(), model.getColor(), model.getLength(), model.getWidth(),
+        super(model.getId(), model.getName(), model.getSerialNumber(), model.getColor(), model.getLength(), model.getWidth(),
                 model.getThickness(), model.getPrice(), model.isAvailability());
         this.memory = model.getMemory();
         this.camerasCount = model.getCamerasCount();
+        typeID = model.getSmartphone().getId();
     }
 
     public Long getTypeID() {

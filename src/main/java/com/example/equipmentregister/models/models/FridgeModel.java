@@ -1,16 +1,19 @@
-package com.example.equipmentregister.models;
+package com.example.equipmentregister.models.models;
 
+import com.example.equipmentregister.models.BaseModelEntity;
 import com.example.equipmentregister.models.types.Fridge;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table
 public class FridgeModel extends BaseModelEntity {
-    @Column(name = "doorsCount")
+    @Column(name = "doors_count")
     private int doorsCount;
     @Column(name = "compressor_type")
+    @Size(min = 1, max = 64)
     private String compressorType;
 
     @ManyToOne

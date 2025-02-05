@@ -1,6 +1,7 @@
-package com.example.equipmentregister.models.types;
+package com.example.equipmentregister.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @MappedSuperclass
@@ -9,11 +10,11 @@ public class BaseTypeEntity implements Serializable {
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
-    private String name;
     @Column(name = "manufacture_country")
+    @Size(min = 1, max = 64)
     private String manufactureCountry;
     @Column
+    @Size(min = 1, max = 64)
     private String manufacturer;
     @Column(name = "possibility_ordering_online")
     private boolean possibilityOrderingOnline;
@@ -27,19 +28,8 @@ public class BaseTypeEntity implements Serializable {
         this.id = id;
     }
 
-    public BaseTypeEntity(Long id, String name, String manufactureCountry,
-                          String manufacturer, boolean possibilityOrderingOnline, boolean paymentByInstalments) {
-        this.id = id;
-        this.name = name;
-        this.manufactureCountry = manufactureCountry;
-        this.manufacturer = manufacturer;
-        this.possibilityOrderingOnline = possibilityOrderingOnline;
-        this.paymentByInstalments = paymentByInstalments;
-    }
-
-    public BaseTypeEntity(String name, String manufactureCountry, String manufacturer,
+    public BaseTypeEntity(String manufactureCountry, String manufacturer,
                           boolean possibilityOrderingOnline, boolean paymentByInstalments) {
-        this.name = name;
         this.manufactureCountry = manufactureCountry;
         this.manufacturer = manufacturer;
         this.possibilityOrderingOnline = possibilityOrderingOnline;
@@ -52,14 +42,6 @@ public class BaseTypeEntity implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getManufactureCountry() {

@@ -2,7 +2,7 @@ package com.example.equipmentregister.dto.types;
 
 import com.example.equipmentregister.dto.BaseTypeDto;
 import com.example.equipmentregister.dto.models.SmartphoneModelDto;
-import com.example.equipmentregister.models.SmartphoneModel;
+import com.example.equipmentregister.models.models.SmartphoneModel;
 import com.example.equipmentregister.models.types.Smartphone;
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -18,8 +18,8 @@ public class SmartphoneDto extends BaseTypeDto {
     }
 
     public SmartphoneDto(Smartphone smartphone) {
-        super(smartphone.getId(), smartphone.getName(), smartphone.getManufactureCountry(), smartphone.getManufacturer(),
-                smartphone.isPossibilityOrderingOnline(), smartphone.isPaymentByInstalments());
+        super(smartphone.getId(), smartphone.getManufactureCountry(), smartphone.getManufacturer(),
+                smartphone.isPossibilityOrderingOnline(), smartphone.isPaymentByInstalments(), smartphone.getRegistry().getId());
         modelDtoList = convertModelToDto(smartphone.getModels());
     }
 

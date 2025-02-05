@@ -2,7 +2,7 @@ package com.example.equipmentregister.dto.types;
 
 import com.example.equipmentregister.dto.BaseTypeDto;
 import com.example.equipmentregister.dto.models.VacuumModelDto;
-import com.example.equipmentregister.models.VacuumModel;
+import com.example.equipmentregister.models.models.VacuumModel;
 import com.example.equipmentregister.models.types.Vacuum;
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -18,8 +18,8 @@ public class VacuumDto extends BaseTypeDto {
     }
 
     public VacuumDto(Vacuum vacuum) {
-        super(vacuum.getId(), vacuum.getName(), vacuum.getManufactureCountry(), vacuum.getManufacturer(),
-                vacuum.isPossibilityOrderingOnline(), vacuum.isPaymentByInstalments());
+        super(vacuum.getId(), vacuum.getManufactureCountry(), vacuum.getManufacturer(),
+                vacuum.isPossibilityOrderingOnline(), vacuum.isPaymentByInstalments(), vacuum.getRegistry().getId());
         modelDtoList = convertModelToDto(vacuum.getModels());
     }
 

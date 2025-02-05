@@ -1,16 +1,21 @@
 package com.example.equipmentregister.models.types;
 
-import com.example.equipmentregister.models.TVModel;
+import com.example.equipmentregister.models.BaseTypeEntity;
+import com.example.equipmentregister.models.Registry;
+import com.example.equipmentregister.models.models.TVModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Where;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "tv")
 public class TV extends BaseTypeEntity {
+    @ManyToOne
+    @JoinColumn(name = "registry_id")
+    @JsonIgnore
+    private Registry registry;
     @OneToMany(mappedBy = "tv")
     @Where(clause = "availability = true")
     private List<TVModel> models;
@@ -18,15 +23,10 @@ public class TV extends BaseTypeEntity {
     public TV() {
     }
 
-    public TV(String name, String manufactureCountry, String manufacturer, boolean possibilityOrderingOnline,
-              boolean paymentByInstalments) {
-        super(name, manufactureCountry, manufacturer, possibilityOrderingOnline, paymentByInstalments);
-    }
-
-    public TV(Long id, String name, String manufactureCountry, String manufacturer, boolean possibilityOrderingOnline,
-              boolean paymentByInstalments, List<TVModel> models) {
-        super(id, name, manufactureCountry, manufacturer, possibilityOrderingOnline, paymentByInstalments);
-        this.models = models;
+    public TV(String manufactureCountry, String manufacturer, boolean possibilityOrderingOnline,
+              boolean paymentByInstalments, Registry registry) {
+        super(manufactureCountry, manufacturer, possibilityOrderingOnline, paymentByInstalments);
+        this.registry = registry;
     }
 
     public TV(Long id) {
@@ -39,5 +39,13 @@ public class TV extends BaseTypeEntity {
 
     public void setModels(List<TVModel> models) {
         this.models = models;
+    }
+
+    public Registry getRegistry() {
+        return registry;
+    }
+
+    public void setRegistry(Registry registry) {
+        this.registry = registry;
     }
 }

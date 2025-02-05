@@ -2,10 +2,7 @@ package com.example.equipmentregister.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 public class BaseTypeDto {
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
@@ -14,31 +11,35 @@ public class BaseTypeDto {
     @NotEmpty
     @NotBlank
     @Size(max = 64)
-    private String name;
-    @NotNull
-    @NotEmpty
-    @NotBlank
-    @Size(max = 64)
+    @Schema(description = "Страна производства", example = "Белорусь")
     private String manufactureCountry;
     @NotNull
     @NotEmpty
     @NotBlank
     @Size(max = 64)
+    @Schema(description = "Завод", example = "Искра")
     private String manufacturer;
+
+    @Schema(description = "Возможность заказа онлайн", example = "true")
     private boolean possibilityOrderingOnline;
+    @Schema(description = "Возможность оформления рассрочки", example = "true")
     private boolean paymentByInstalments;
+
+    @Schema(description = "Наименование в реестре", example = "1")
+    @Min(1)
+    private Long registryID;
 
     public BaseTypeDto() {
     }
 
-    public BaseTypeDto(Long id, String name, String manufactureCountry,
-                       String manufacturer, boolean possibilityOrderingOnline, boolean paymentByInstalments) {
+    public BaseTypeDto(Long id, String manufactureCountry, String manufacturer,
+                       boolean possibilityOrderingOnline, boolean paymentByInstalments, Long registryID) {
         this.id = id;
-        this.name = name;
         this.manufactureCountry = manufactureCountry;
         this.manufacturer = manufacturer;
         this.possibilityOrderingOnline = possibilityOrderingOnline;
         this.paymentByInstalments = paymentByInstalments;
+        this.registryID = registryID;
     }
 
     public Long getId() {
@@ -47,14 +48,6 @@ public class BaseTypeDto {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getManufactureCountry() {
@@ -87,5 +80,13 @@ public class BaseTypeDto {
 
     public void setPaymentByInstalments(boolean paymentByInstalments) {
         this.paymentByInstalments = paymentByInstalments;
+    }
+
+    public Long getRegistryID() {
+        return registryID;
+    }
+
+    public void setRegistryID(Long registryID) {
+        this.registryID = registryID;
     }
 }
